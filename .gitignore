@@ -1,0 +1,10 @@
+*user.h
+*user.c
+*server.h
+*server.c
+*.dSYM
+
+alice/alice
+bob/bob
+carol/carol
+freddie/freddie

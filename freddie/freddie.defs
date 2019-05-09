@@ -1,0 +1,25 @@
+subsystem freddie 1241;
+
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+
+uimport "freddie/user-types.h";
+simport "freddie/server-decls.h";
+
+type carol_passport_t = mach_port_t;
+
+type freddie_handle_t = mach_port_t
+	intran: freddie_handle_t freddie_lookup_handle(mach_port_t)
+	outtran: mach_port_t freddie_handle_get_port(freddie_handle_t);
+
+routine freddie_make_handle(
+	freddie: mach_port_t;
+	opaque_port: mach_port_t;
+	passport: carol_passport_t;
+	out handle: freddie_handle_t);
+
+routine freddie_read_handle(
+	freddie: mach_port_t;
+	handle: freddie_handle_t;
+	out opaque_port: mach_port_t;
+	out passport: carol_passport_t);

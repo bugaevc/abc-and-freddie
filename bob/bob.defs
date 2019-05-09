@@ -1,0 +1,12 @@
+subsystem bob 3874;
+
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+
+import "freddie/user-types.h";
+
+type freddie_handle_t = mach_port_t;
+
+routine bob_prove(
+	bob: mach_port_t;
+	handle: freddie_handle_t);

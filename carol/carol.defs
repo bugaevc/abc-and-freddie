@@ -1,0 +1,34 @@
+subsystem carol 8290;
+
+#include <mach/std_types.defs>
+#include <mach/mach_types.defs>
+
+uimport "carol/user-types.h";
+simport "carol/server-decls.h";
+
+type carol_client_t = mach_port_t
+	intran: carol_client_t carol_lookup_client(mach_port_t)
+	outtran: mach_port_t carol_client_get_port(carol_client_t);
+type carol_passport_t = mach_port_t
+	intran: carol_passport_t carol_lookup_passport(mach_port_t)
+	outtran: mach_port_t carol_passport_get_port(carol_passport_t);
+
+routine carol_check_in(
+	carol: mach_port_t;
+	out client: carol_client_t);
+
+routine carol_get_id(
+	client: carol_client_t;
+	out id: int64_t);
+
+routine carol_make_passport(
+	client: carol_client_t;
+	out passport: carol_passport_t);
+
+routine carol_seal(
+	passport: carol_passport_t);
+
+routine carol_get_passport_id(
+	carol: mach_port_t;
+	passport: carol_passport_t;
+	out id: int64_t);
